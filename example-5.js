@@ -1,8 +1,39 @@
 import {cleanConsole, createAll} from './data';
+import {funcGroupUser} from './example-4';
+import {funcUsersHascar} from './example-2';
+
 const companies = createAll();
 
+const funtStatistics = (companies) =>{
+  let sumAge = 0;
+  let sumAgeCar = 0;
+  let sumUsersWithCar = 0;
+  const size = funcGroupUser(companies);
+  const lengthSize = size.length;
+  let sum = size.map((item)=> sumAge = sumAge + item.age);
+  sum = sum[sum.length-1];
+  const average = sum/size.length;
+  const hasCar = funcUsersHascar(companies, true);
+  let allUserWithCar = hasCar.map((item)=>{
+    sumUsersWithCar = sumUsersWithCar + item.users.length;
+    return sumUsersWithCar;
+  });
+  allUserWithCar = allUserWithCar[allUserWithCar.length-1];
+  let averageUsersWithCar = hasCar.map((item)=> {
+    item.users.map((itemUsers)=> sumAgeCar = sumAgeCar + itemUsers.age);
+    return sumAgeCar;
+  });
+  averageUsersWithCar = averageUsersWithCar[averageUsersWithCar.length-1]/averageUsersWithCar.length;
+  const result = {
+    size: lengthSize,
+    average: average,
+    hasCar: allUserWithCar,
+    averageWithCar: averageUsersWithCar,
+  };
+  return result;
+};
 cleanConsole(5, companies);
-console.log('---- EXAMPLE 5 --- ', 'Put here your function');
+console.log('---- EXAMPLE 5 --- ', funtStatistics(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

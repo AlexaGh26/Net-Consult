@@ -1,8 +1,16 @@
 import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
+export const funcUsersHascar = (companies, hasCar) => {
+  const usersHascar = companies.map((item)=> {
+    const nameCompany = item.name;
+    const allWithCar = item.users.filter((itemUsers)=> itemUsers.car === hasCar);
+    return {name: nameCompany, users: allWithCar};
+  });
+  return usersHascar;
+};
 cleanConsole(2, companies);
-console.log('---- EXAMPLE 2 --- ', 'Put here your function');
+console.log('---- EXAMPLE 2 --- ', funcUsersHascar(companies, true));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
@@ -30,13 +38,3 @@ console.log('---- EXAMPLE 2 --- ', 'Put here your function');
 // "users" dont la valeur de l'attribut "car" est égal au paramètre de la
 // fonction "hasCar" et l'attribut "usersLength" doit renseigner le nombre de
 // "users" correspondant au paramètre "hasCar".
-
-const funcUsersHascar = (companies, hasCar) => {
-  const usersHascar = companies.map((item)=> {
-    item.users = item.users.filter((itemUsers)=> itemUsers.car === hasCar);
-    item.usersLength = item.users.length;
-    return item;
-  });
-  return usersHascar;
-};
-funcUsersHascar(companies, true);

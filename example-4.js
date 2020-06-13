@@ -1,8 +1,20 @@
 import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
+export const funcGroupUser = (companies) => {
+  let table = [];
+  companies = companies.map((item) => {
+    item.users = item.users.map((itemUser) => ({...itemUser, company: item.name}));
+    return item;
+  });
+  companies.map((item) => {
+    table = [...table, ...item.users];
+  });
+  table = table.sort((a, b) => a.age - b.age);
+  return table;
+};
 cleanConsole(4, companies);
-console.log('---- EXAMPLE 4 --- ', 'Put here your function');
+console.log('---- EXAMPLE 4 --- ', funcGroupUser(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
@@ -30,16 +42,3 @@ console.log('---- EXAMPLE 4 --- ', 'Put here your function');
 // doit avoir un nouvel attribut "company" ayant pour valeur le nom de la "company"
 // à laquelle il appartient. Les "users" doivent être triés en fonction de leur
 // âge (du plus vieux au plus jeune).
-
-const funcGroupUser = (companies) => {
-  let table = [];
-  companies = companies.map((item) => {
-    item.users = item.users.map((itemUser) => ({...itemUser, company: item.name}));
-    return item;
-  });
-  companies.map((item) => {
-    table = [...table, ...item.users];
-  });
-  table = table.sort((a, b) => a.age - b.age);
-};
-funcGroupUser(companies);

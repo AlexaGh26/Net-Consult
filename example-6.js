@@ -2,8 +2,20 @@ import {cleanConsole, createAll} from './data';
 
 const companies = createAll();
 
+const funConcatenateAndCar = (companies) =>{
+  let result = [];
+  companies.map((item) => {
+    item.users.map((itemUser)=>{
+      const {firstName, lastName, car, age} = itemUser;
+      const user = {[`${firstName}${lastName}${age}`]: car};
+      result = [...result, user];
+      return [...result, user];
+    });
+  });
+  return result;
+};
 cleanConsole(6, companies);
-console.log('---- EXAMPLE 6 --- ', 'Put here your function');
+console.log('---- EXAMPLE 6 --- ', funConcatenateAndCar(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
@@ -28,11 +40,3 @@ console.log('---- EXAMPLE 6 --- ', 'Put here your function');
 // un nouve objet dont les attributs sont la concaténation du nom, du prénom et
 // de l'âge de chaque "user". Chaque attribut devra avoir la valeur du booléen
 // "car". Voir exemple ci-dessous.
-
-const example = {
-  johnDoe32: true,
-  BernardoMinet45: false,
-  alinaChef23: true,
-};
-
-console.log(example);

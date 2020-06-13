@@ -1,9 +1,34 @@
-import {createAll, cleanConsole} from './data';
+import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
-
+export const funcCompany = (companies) => {
+  const companyFormatted = companies.map((item) => {
+    const {name, users} = item;
+    const initialCapitaLetter = (text) => text.charAt(0).toUpperCase() + text.slice(1);
+    item.name = name.charAt(0).toUpperCase() + name.slice(1);
+    users.map((itemUser) => {
+      const {firstName, lastName} = itemUser;
+      if (!lastName) {
+        itemUser.lastName = '';
+      } else {
+        itemUser.lastName = initialCapitaLetter(lastName);
+      }
+      if (!firstName) {
+        itemUser.firstName = '';
+      } else {
+        itemUser.firstName = initialCapitaLetter(firstName);
+      }
+      return itemUser;
+    });
+    users.sort((a, b)=> a.firstName.toLowerCase().localeCompare(b.firstName.toLowerCase()));
+    return item;
+  });
+  const finalCompanyFormatted = companyFormatted.sort((a, b) => a.usersLength - b.usersLength);
+  return finalCompanyFormatted;
+};
 cleanConsole(1, companies);
-console.log('---- EXAMPLE 1 --- ', 'Put here your function');
+console.log('---- EXAMPLE 1 --- ', funcCompany(companies));
+
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
@@ -34,29 +59,3 @@ console.log('---- EXAMPLE 1 --- ', 'Put here your function');
 // le nom et le prénom de chaque "user".
 // Les "companies" doivent être triées par leur nombre de "user" (ordre décroissant)
 // et les "users" de chaque "company" doivent être classés par ordre alphabétique.
-
-export const funcCompany = (companies) => {
-  const companyFormatted = companies.map((item) => {
-    item.name = item.name.charAt(0).toUpperCase() + item.name.slice(1);
-    item.users = item.users.map((itemUser) => {
-      if (!itemUser.lastName) {
-        itemUser.lastName = '';
-      } else {
-        itemUser.lastName = itemUser.lastName.charAt(0).toUpperCase() + itemUser.lastName.slice(1);
-      }
-      if (!itemUser.firstName) {
-        itemUser.firstName = '';
-      } else {
-        itemUser.firstName = itemUser.firstName.charAt(0).toUpperCase() + itemUser.firstName.slice(1);
-      }
-      return itemUser;
-    });
-    item.users.sort((a, b)=> {
-      return a.firstName.toLowerCase().localeCompare(b.firstName.toLowerCase());
-    });
-    return item;
-  });
-  const finalCompanyFormatted = companyFormatted.sort((a, b) => a.usersLength - b.usersLength);
-  return finalCompanyFormatted;
-};
-funcCompany(companies);

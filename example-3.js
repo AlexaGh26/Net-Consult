@@ -3,8 +3,25 @@ import {funcCompany} from './example-1';
 
 const companies = createAll();
 
+const funcValidateMayus = (companies) => {
+  const resultFromExampleOne = funcCompany(companies);
+  let isValid = true;
+  resultFromExampleOne.map((item) => {
+    if (item.name.charAt(0) !== item.name.charAt(0).toUpperCase()) {
+      isValid = false;
+    }
+    item.users.map((itemUser) => {
+      if (itemUser.firstName.charAt(0)
+      !== itemUser.firstName.charAt(0).toUpperCase()
+      || itemUser.lastName.charAt(0) !== itemUser.lastName.charAt(0).toUpperCase()) {
+        isValid = false;
+      }
+    });
+  });
+  return isValid;
+};
 cleanConsole(3, companies);
-console.log('---- EXAMPLE 3 --- ', 'Put here your function');
+console.log('---- EXAMPLE 3 --- ', funcValidateMayus(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
@@ -30,22 +47,3 @@ console.log('---- EXAMPLE 3 --- ', 'Put here your function');
 // un booléen validant que tous les noms des "company" et les attributs "firstName"
 // et "lastName" des "users" sont en majuscules. Vous devez tester le fonctionnement
 // de cette fonction en important la fonction créée pour "example-1.js".
-
-const funcValidateMayus = (companies) => {
-  const resultFromExampleOne = funcCompany(companies);
-  let isValid = true;
-  resultFromExampleOne.map((item) => {
-    if (item.name.charAt(0) !== item.name.charAt(0).toUpperCase()) {
-      isValid = false;
-    }
-    item.users.map((itemUser) => {
-      if (itemUser.firstName.charAt(0) !== itemUser.firstName.charAt(0).toUpperCase()
-      || itemUser.lastName.charAt(0) !== itemUser.lastName.charAt(0).toUpperCase()) {
-        isValid = false;
-      }
-    });
-  });
-  return isValid;
-};
-
-funcValidateMayus(companies);

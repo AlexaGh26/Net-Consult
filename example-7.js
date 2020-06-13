@@ -3,8 +3,33 @@ import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
 cleanConsole(7, companies);
-console.log('---- EXAMPLE 7 part 1 --- ', 'Put here your function');
-console.log('---- EXAMPLE 7 part 2 --- ', 'Put here your function');
+
+const returnCompany = (id) =>{
+  let result = 0;
+  let name = companies.map((item) =>{
+    if (item.id===id) {
+      name = item.name;
+      result = name;
+      return result;
+    };
+  });
+  return result;
+};
+console.log('---- EXAMPLE 7 part 1 --- ', returnCompany(3));
+
+const deleteCompany = (companies, id) =>{
+  let companyNew = 0;
+  companies.map((item) =>{
+    if (item.id===id) {
+      companyNew = companies.splice(id);
+      return companyNew;
+    };
+  });
+  return companyNew;
+};
+console.log('---- EXAMPLE 7 part 2 --- ', deleteCompany(companies, 2));
+
+
 console.log('---- EXAMPLE 7 part 3 --- ', 'Put here your function');
 console.log('---- EXAMPLE 7 part 4 --- ', 'Put here your function');
 console.log('---- EXAMPLE 7 part 5 --- ', 'Put here your function');
