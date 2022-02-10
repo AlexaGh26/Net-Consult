@@ -28,7 +28,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-loader": "^3.0.3",
     "file-loader": "^1.1.11",
-    "node-sass": "^4.9.2",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "webpack": "^4.41.6",
